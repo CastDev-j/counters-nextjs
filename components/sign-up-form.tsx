@@ -62,7 +62,7 @@ export function SignUpForm({
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${defaultUrl}/auth/callback`,
+        redirectTo: `${defaultUrl()}/auth/callback`,
       },
     });
   };
@@ -71,7 +71,7 @@ export function SignUpForm({
     await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: `${defaultUrl}/auth/callback`,
+        redirectTo: `${defaultUrl()}/auth/callback`,
       },
     });
   };
