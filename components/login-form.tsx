@@ -51,12 +51,18 @@ export function LoginForm({
   const handleLoginGoogle = () => {
     supabase.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        redirectTo: `http://localhost:3000/auth/callback`,
+      },
     });
   };
 
   const handleLoginGithub = () => {
     supabase.auth.signInWithOAuth({
       provider: "github",
+      options: {
+        redirectTo: `http://localhost:3000/auth/callback`,
+      },
     });
   };
 
