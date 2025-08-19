@@ -102,7 +102,7 @@ export const NotesCrud = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto w-full">
       {/* Header */}
       <header className="mb-8">
         <div className="flex items-center gap-3 mb-2">
