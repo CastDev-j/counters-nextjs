@@ -1,4 +1,4 @@
-import { AuthButton } from "@/components/auth-button";
+import { Header } from "@/components/header";
 
 export default function ProtectedLayout({
   children,
@@ -7,12 +7,9 @@ export default function ProtectedLayout({
 }) {
   return (
     <main className="min-h-screen max-w-screen flex flex-col items-center">
-      <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-        <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-          <AuthButton />
-        </div>
-      </nav>
-        {children}
+      <Header />
+
+      {children}
     </main>
   );
 }
