@@ -12,7 +12,7 @@ export default async function ProtectedPage() {
   }
 
   return (
-    <div className="flex flex-col w-screen p-6 gap-3">
+    <div className="flex flex-col w-screen p-6 gap-6">
       <section>
         <h2>ID usuario</h2>
         <pre className="bg-muted p-3 rounded text-xs overflow-auto max-h-40">
