@@ -52,7 +52,7 @@ export function LoginForm({
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `https://counters-nextjs.vercel.app/auth/callback`,
+        redirectTo: `${defaultUrl()}/auth/callback`,
       },
     });
   };
