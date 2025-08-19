@@ -62,7 +62,7 @@ export function SignUpForm({
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${defaultUrl}/auth/callback`,
+        redirectTo: `https://counters-nextjs.vercel.app/auth/callback`,
       },
     });
   };
