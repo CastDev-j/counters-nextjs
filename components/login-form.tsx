@@ -52,9 +52,7 @@ export function LoginForm({
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${
-          defaultUrl || "https://counters-nextjs.vercel.app"
-        }/auth/callback`,
+        redirectTo: `${defaultUrl}/auth/callback`,
       },
     });
   };
@@ -63,9 +61,7 @@ export function LoginForm({
     await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: `${
-          defaultUrl || "https://counters-nextjs.vercel.app"
-        }/auth/callback`,
+        redirectTo: `${defaultUrl}/auth/callback`,
       },
     });
   };
