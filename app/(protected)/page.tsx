@@ -22,14 +22,14 @@ export default async function ProtectedPage() {
 
       <NotesCrud />
 
-      <div>
+      <section className="max-w-4xl mx-auto w-full">
         <h2 className="font-bold text-xl mb-4">Detalles de Usuario</h2>
         <div className="mb-4">
           <pre className="bg-muted p-3 rounded text-xs overflow-auto max-h-40">
             {JSON.stringify(data.claims, null, 2)}
           </pre>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
