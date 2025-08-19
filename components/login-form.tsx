@@ -48,8 +48,8 @@ export function LoginForm({
     }
   };
 
-  const handleLoginGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
+  const handleLoginGoogle = () => {
+    supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: `${defaultUrl()}/auth/callback`,
@@ -57,8 +57,8 @@ export function LoginForm({
     });
   };
 
-  const handleLoginGithub = async () => {
-    await supabase.auth.signInWithOAuth({
+  const handleLoginGithub = () => {
+    supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
         redirectTo: `${defaultUrl()}/auth/callback`,
