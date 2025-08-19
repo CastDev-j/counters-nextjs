@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, defaultUrl } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
@@ -62,7 +62,7 @@ export function SignUpForm({
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `https://counters-nextjs.vercel.app/auth/callback`,
+        redirectTo: `${defaultUrl}/auth/callback`,
       },
     });
   };
@@ -71,7 +71,7 @@ export function SignUpForm({
     await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: `https://counters-nextjs.vercel.app/auth/callback`,
+        redirectTo: `${defaultUrl}/auth/callback`,
       },
     });
   };
