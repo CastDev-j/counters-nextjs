@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 export function LoginForm({
   className,
@@ -26,9 +27,10 @@ export function LoginForm({
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
+  const supabase = createClient();
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const supabase = createClient();
     setIsLoading(true);
     setError(null);
 
@@ -38,46 +40,70 @@ export function LoginForm({
         password,
       });
       if (error) throw error;
-      // Update this route to redirect to an authenticated route. The user already has an active session.
-      router.push("/protected");
+      router.push("/protected"); // Redirige a la ruta autenticada
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred");
+      setError(error instanceof Error ? error.message : "Ocurrió un error");
     } finally {
       setIsLoading(false);
     }
   };
 
+  const handleLoginGoogle = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `http://localhost:3000/auth/callback`,
+      },
+    });
+  };
+
+  const handleLoginGithub = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: {
+        redirectTo: `http://localhost:3000/auth/callback`,
+      },
+    });
+  };
+
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+    <div
+      className={cn("flex flex-col items-center justify-center", className)}
+      {...props}
+    >
+      <Card className="w-full max-w-md shadow-md">
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account
+          <CardTitle className="text-2xl font-bold text-center">
+            Iniciar sesión
+          </CardTitle>
+          <CardDescription className="text-center">
+            Ingresa tus credenciales para acceder a tu cuenta
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleLogin}>
-            <div className="flex flex-col gap-6">
+          <form onSubmit={handleLogin} className="space-y-5">
+            {/* Inputs */}
+            <div className="space-y-4">
               <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">Correo electrónico</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="m@ejemplo.com"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
+
               <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password">Contraseña</Label>
                   <Link
                     href="/auth/forgot-password"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                    className="text-sm text-blue-600 hover:underline underline-offset-4"
                   >
-                    Forgot your password?
+                    ¿Olvidaste tu contraseña?
                   </Link>
                 </div>
                 <Input
@@ -88,18 +114,54 @@ export function LoginForm({
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Logging in..." : "Login"}
+            </div>
+
+            {/* Botón principal */}
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
+            </Button>
+
+            {/* Separador */}
+            <div className="flex items-center gap-2">
+              <div className="flex-grow h-px bg-gray-200" />
+              <span className="text-xs text-gray-500">o continúa con</span>
+              <div className="flex-grow h-px bg-gray-200" />
+            </div>
+
+            {/* Botones sociales */}
+            <div className="space-y-3">
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full flex items-center justify-center gap-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
+                onClick={handleLoginGoogle}
+                disabled={isLoading}
+              >
+                <FaGoogle />
+                <span>Iniciar con Google</span>
+              </Button>
+              <Button
+                type="button"
+                variant="default"
+                className="w-full flex items-center justify-center gap-2 bg-black text-white hover:bg-gray-900"
+                onClick={handleLoginGithub}
+                disabled={isLoading}
+              >
+                <FaGithub />
+                <span>Iniciar con GitHub</span>
               </Button>
             </div>
-            <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
+
+            {/* Enlace final */}
+            <div className="text-center text-sm mt-6">
+              ¿No tienes una cuenta?{" "}
               <Link
                 href="/auth/sign-up"
                 className="underline underline-offset-4"
               >
-                Sign up
+                Regístrate
               </Link>
             </div>
           </form>
