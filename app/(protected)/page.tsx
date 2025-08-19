@@ -16,14 +16,22 @@ export default async function ProtectedPage() {
 
   return (
     <div className="flex flex-col w-screen py-6">
-      <div className="px-6">
+      <section className="px-6">
+        <h2>ID usuario</h2>
+        <pre className="bg-muted p-3 rounded text-xs overflow-auto max-h-40">
+          {JSON.stringify(data.claims.sub, null, 2)}
+        </pre>
+      </section>
+
+      <section className="px-6">
         <h2 className="font-bold text-xl mb-4">Your Server Notes</h2>
         <div className="mb-4">
           <pre className="bg-muted p-3 rounded text-xs overflow-auto max-h-40">
             {JSON.stringify(notes, null, 2)}
           </pre>
         </div>
-      </div>
+      </section>
+      <NoteComponent />
       <NoteComponent />
       <div className="px-6">
         <h2 className="font-bold text-xl mb-4">Your user details</h2>
