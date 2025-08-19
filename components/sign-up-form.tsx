@@ -1,6 +1,6 @@
 "use client";
 
-import { cn, defaultUrl } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
@@ -61,18 +61,12 @@ export function SignUpForm({
   const handleSignupGoogle = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: {
-        redirectTo: `${defaultUrl()}/auth/callback`,
-      },
     });
   };
 
   const handleSignupGithub = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "github",
-      options: {
-        redirectTo: `${defaultUrl()}/auth/callback`,
-      },
     });
   };
 
