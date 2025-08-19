@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, defaultUrl } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
@@ -46,7 +46,7 @@ export function SignUpForm({
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/protected`,
+          emailRedirectTo: `${window.location.origin}/`,
         },
       });
       if (error) throw error;
@@ -62,7 +62,7 @@ export function SignUpForm({
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
+        redirectTo: `${defaultUrl}/auth/callback`,
       },
     });
   };
@@ -71,7 +71,7 @@ export function SignUpForm({
     await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
+        redirectTo: `${defaultUrl}/auth/callback`,
       },
     });
   };
