@@ -23,7 +23,7 @@ export default async function ProtectedPage() {
       <NotesCrud />
 
       <div>
-        <h2 className="font-bold text-xl mb-4">Your user details</h2>
+        <h2 className="font-bold text-xl mb-4">Detalles de Usuario</h2>
         <div className="mb-4">
           <pre className="bg-muted p-3 rounded text-xs overflow-auto max-h-40">
             {JSON.stringify(data.claims, null, 2)}
