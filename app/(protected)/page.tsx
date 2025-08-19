@@ -13,7 +13,7 @@ export default async function ProtectedPage() {
 
   return (
     <div className="flex flex-col w-screen p-6 gap-6">
-      <section>
+      <section className="max-w-4xl mx-auto w-full">
         <h2>ID usuario</h2>
         <pre className="bg-muted p-3 rounded text-xs overflow-auto max-h-40">
           {JSON.stringify(data.claims.sub, null, 2)}

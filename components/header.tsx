@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "./logout-button";
-import { FiHome, FiFileText } from "react-icons/fi";
+import { FiFileText } from "react-icons/fi";
 
 export async function Header() {
   const supabase = await createClient();
@@ -42,24 +42,6 @@ export async function Header() {
               <h1 className="text-lg font-semibold text-gray-900">Notes App</h1>
               <p className="text-xs text-gray-500 -mt-1">Gestión de notas</p>
             </div>
-          </div>
-
-          {/* Navigation Links - Solo visible en pantallas medianas y grandes */}
-          <div className="hidden md:flex items-center gap-6">
-            <a
-              href="/dashboard"
-              className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
-            >
-              <FiHome className="text-sm" />
-              Inicio
-            </a>
-            <a
-              href="/notes"
-              className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
-            >
-              <FiFileText className="text-sm" />
-              Mis Notas
-            </a>
           </div>
 
           {/* User Section */}
