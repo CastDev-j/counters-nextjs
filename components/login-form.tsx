@@ -52,7 +52,7 @@ export function LoginForm({
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
+        redirectTo: `https://counters-nextjs.vercel.app/auth/callback`,
       },
     });
   };
@@ -61,7 +61,7 @@ export function LoginForm({
     supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
+        redirectTo: `https://counters-nextjs.vercel.app/auth/callback`,
       },
     });
   };
