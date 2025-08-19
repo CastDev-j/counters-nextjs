@@ -304,7 +304,7 @@ export const NotesCrud = () => {
                       </span>
                       <span className="flex items-center gap-1">
                         <FiCalendar className="text-xs" />
-                        Nota #{index + 1}
+                        #{index + 1}
                       </span>
                     </div>
                   </div>
