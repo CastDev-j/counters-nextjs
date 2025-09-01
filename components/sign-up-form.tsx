@@ -58,8 +58,8 @@ export function SignUpForm({
     }
   };
 
-  const handleSignupGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
+  const handleSignupGoogle = () => {
+    supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: `https://counters-nextjs.vercel.app/auth/callback`,
@@ -67,8 +67,8 @@ export function SignUpForm({
     });
   };
 
-  const handleSignupGithub = async () => {
-    await supabase.auth.signInWithOAuth({
+  const handleSignupGithub = () => {
+    supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
         redirectTo: `https://counters-nextjs.vercel.app/auth/callback`,
